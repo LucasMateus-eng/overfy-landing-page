@@ -1,15 +1,21 @@
 :root {
+    /* colors */
     --color-primary: #0E2844;
     --color-secondary: #FF6525;
     --color-white: #FAFAFA;
     --color-soft: #FFF9F4;
 
+    /* typography */
     font-size: 10px;
     --sd-font-size: 2rem;
     --medium-font-size: 2.5rem;
     --big-font-size: 3.5rem;
     --h1-font-size: 7.5rem;
     --li-font-size: 1.8rem;
+
+    /* padding */
+    --sd-padding-size: 6rem;
+    --ft-padding-size: 10rem;
 }
 
 /* CSS resets === */
@@ -66,12 +72,9 @@ button {
 #container {
     display: grid;
     grid-template-areas: 
-    "header header header"
-    "greetings greetings greetings"
-    "best-destinations best-destinations best-destinations"
-    "reasons-to-travel reasons-to-travel reasons-to-travel"
-    "prices prices prices"
-    "footer footer footer";
+    "header"
+    "main"
+    "footer";
 }
 
 /* header === */
@@ -128,17 +131,35 @@ button {
 }
 
 /* btn === */
-.btn button {
+#btn {
     width: 100%;
     padding: 1rem 2.5rem;
     background: var(--color-secondary);
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     color: var(--color-white);
+
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
 }
 
-.btn button:hover {
+#btn:hover {
     opacity: 0.8;
     transition: .5s ease;
+}
+
+/* main */
+.main {
+    display: grid;
+    grid-template-areas: 
+    "greetings greetings"
+    "best-destinations best-destinations"
+    "reasons-to-travel reasons-to-travel"
+    "prices prices";
 }
 
 /* greetings === */
@@ -149,7 +170,7 @@ button {
     justify-content: space-between;
     align-items: center;
 
-    padding-bottom: 6rem;
+    padding-bottom: var(--sd-padding-size);
 }
 
 /* content-invite === */
@@ -170,7 +191,7 @@ button {
     color: var(--color-primary);
     text-align: justify;
 
-    padding: 2rem 0 0;
+    padding-top: 2rem;
 }
 
 .content-invite span {
@@ -190,6 +211,7 @@ button {
 /* best-destinations === */
 .best-destinations {
     grid-area: best-destinations;
+    padding-bottom: var(--sd-padding-size);
 }
 
 /* trip-container === */
@@ -198,14 +220,13 @@ button {
     justify-content: space-around;
     align-items: center;
     
-    padding: 5rem 0 6rem;
+    padding-top: var(--sd-padding-size);
 }
 
 /* trip-card === */
 .trip-card {
     width: 30%;
-    height: 80vh;
-    max-height: 500px;
+    height: 500px;
 
     background-position: center center;
     background-size: cover;
@@ -253,6 +274,7 @@ button {
 /* reasons-to-travel === */
 .reasons-to-travel {
     grid-area: reasons-to-travel;
+    padding-bottom: var(--sd-padding-size);
 }
 
 /* reasons-container === */
@@ -261,7 +283,7 @@ button {
     grid-template-columns: repeat(auto-fit, minmax(50%, auto));
     justify-content: space-between;
     align-items: center;
-    padding: 5rem 0;
+    padding-top: var(--sd-padding-size);
 }
 
 /* reason-item === */
@@ -305,7 +327,7 @@ button {
 /* prices === */
 .prices {
     grid-area: prices;
-    padding: 5rem 0;
+    padding-bottom: var(--ft-padding-size);
 }
 
 /* header-prices */
@@ -336,15 +358,15 @@ button {
     background: var(--color-soft);
     border: solid .3rem var(--color-secondary);
     border-radius: 1rem;
-    padding: 4rem;
+    padding: 4rem 2rem;
 }
 
 /* card === */
 .card {
     width: 100%;
     max-width: 380px;
-    height: 80vh;
-    max-height: 530px;
+
+    height: 530px;
 
     padding: 5rem 2.5rem;
     margin-right: 2rem;
@@ -388,7 +410,7 @@ button {
     padding-top: 2rem;
 }
 
-.card-body .reason-plan {
+.card-body .text-plan {
     font-size: var(--li-font-size);
     font-weight: 700;
     color: var(--color-white);
@@ -399,7 +421,7 @@ button {
 .card-body .plan-list {
     max-height: 200px;
     height: 100%;
-    padding: 2rem 0;
+    padding-top: 2rem;
 }
 
 .card-body .plan-list li {
@@ -422,7 +444,7 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem 0 4rem;
+    padding: 3rem 0;
 }
 
 .btn-plan button {
@@ -437,7 +459,7 @@ button {
 /* footer */
 .footer {
     grid-area: footer;
-    padding: 5rem 0;
+    padding-bottom: 5rem;
 }
 
 /* footer-menu-container === */
@@ -475,8 +497,8 @@ button {
 }
 
 .menu-social-media li {
-    min-width: 5rem;
-    min-height: 5rem;
+    min-width: 50px;
+    min-height: 50px;
 
     border-radius: 50%;
     margin-right: 2rem;
@@ -568,6 +590,10 @@ button {
         margin-bottom: 1.5rem;
     }
 
+    .menu-toggle-container.active {
+        position: fixed;
+    }
+
     .menu.active {
         right: 0;
     }
@@ -575,13 +601,20 @@ button {
 
 /* Responsividade - Tablet === */
 @media screen and (max-width: 768px) {
+    :root {
+        --big-font-size: 3rem;
+
+        --sd-padding-size: 5rem;
+        --ft-padding-size: 8rem;
+    }
+
     .logo {
         max-width: 177px;
     }
 
     .greetings {
         display: block;
-        padding: 4rem 0;
+        padding: 4rem 0 5rem;
     }
 
     .content-invite {
@@ -626,7 +659,7 @@ button {
     }
 
     .brand-container {
-        padding-top: 2rem;
+        padding-top: 3rem;
     }
     
     .brand-container img {
